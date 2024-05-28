@@ -2,7 +2,8 @@ const BASE_URL = "https://rickandmortyapi.com/api/character";
 
 const id = 6;
 
-const characteName = document.querySelector(".character-name");
+const characterPhoto = document.querySelector(".card-photo");
+const characterName = document.querySelector(".character-name");
 const characterGender = document.querySelector(".character_info-gender");
 const characterStatus = document.querySelector(".character_info-status");
 const characterSpecie = document.querySelector(".character_info-specie");
@@ -20,8 +21,8 @@ const fetchCharacterProfile = () => {
 
 fetchCharacterProfile()
   .then((data) => {
-    console.log(data.origin);
-    characteName.textContent = data.name;
+    characterPhoto.src = `https://rickandmortyapi.com/api/character/avatar/${data.id}.jpeg`;
+    characterName.textContent = data.name;
     characterGender.textContent = data.gender;
     characterStatus.textContent = data.status;
     characterSpecie.textContent = data.species;
