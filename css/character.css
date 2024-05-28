@@ -1,0 +1,31 @@
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.go-back {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}
+
+body {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.person-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-photo {
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+}
+
+.character_info {
+  width: 420px;
+}
