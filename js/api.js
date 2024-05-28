@@ -10,12 +10,13 @@ const fetchCharacter = () => {
     return response.json();
   });
 };
+
 const createCharacterCard = (data) => {
   return `
-  <li>
+  <li class="card-js" key="${data.id}">
         <a href="character.html">
           <div class="card">
-            <img src="img/card-photo.jpg" alt="card-photo" class="card-photo" />
+            <img src="https://rickandmortyapi.com/api/character/avatar/${data.id}.jpeg" alt="card-photo" class="card-photo" />
             <h2 class="character-name">${data.name}</h2>
             <h3 class="character-type">${data.species}</h3>
           </div>
@@ -26,7 +27,7 @@ const createCharacterCard = (data) => {
 
 fetchCharacter()
   .then((data) => {
-    // console.log(data.results);
+    console.log(data.results);
     data.results.sort((a, b) => {
       if (a.name > b.name) {
         return 1;
@@ -39,13 +40,10 @@ fetchCharacter()
 
     console.log(data.results);
 
-    data.results.map((element) => {
-      //      console.log(element.name);
+    data.results.forEach((element) => {
       gridContainer.innerHTML += createCharacterCard(element);
     });
   })
   .catch((err) => {
     console.log(err);
   });
-
-//test
