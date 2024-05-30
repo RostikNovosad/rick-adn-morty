@@ -1,6 +1,9 @@
 const BASE_URL = "https://rickandmortyapi.com/api/character";
 
-const id = 6;
+const idStr = localStorage.getItem("id");
+let id = +idStr;
+console.log(id);
+console.log(typeof id);
 
 const characterPhoto = document.querySelector(".card-photo");
 const characterName = document.querySelector(".character-name");
