@@ -1,9 +1,10 @@
 const gridContainer = document.querySelector(".grid");
+const inputSearch = document.querySelector(".search-character");
 
 const BASE_URL = "https://rickandmortyapi.com/api/character";
 
-const fetchCharacter = () => {
-  return fetch(BASE_URL).then((response) => {
+const fetchCharacter = (URL) => {
+  return fetch(URL).then((response) => {
     if (!response.ok) {
       throw new Error(response.status);
     }
@@ -25,9 +26,10 @@ const createCharacterCard = (data) => {
   `;
 };
 
-fetchCharacter()
+fetchCharacter("https://rickandmortyapi.com/api/character")
   .then((data) => {
     console.log(data.results);
+
     data.results.sort((a, b) => {
       if (a.name > b.name) {
         return 1;
@@ -42,6 +44,25 @@ fetchCharacter()
 
     data.results.forEach((element) => {
       gridContainer.innerHTML += createCharacterCard(element);
+    });
+
+    inputSearch.addEventListener("change", () => {
+      if (inputSearch.value.trim() !== "") {
+        fetchCharacter(
+          `https://rickandmortyapi.com/api/character/?name=${inputSearch.value.trim()}`
+        )
+          .then((data) => {
+            gridContainer.innerHTML = "";
+            data.results.forEach((element) => {
+              if (element.name.includes(inputSearch.value.trim())) {
+                gridContainer.innerHTML += createCharacterCard(element);
+              }
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     });
   })
   .catch((err) => {
